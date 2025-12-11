@@ -2,7 +2,7 @@
 
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen) ![Stack](https://img.shields.io/badge/stack-no__std%20Rust-orange) ![Architecture](https://img.shields.io/badge/architecture-embedded%20to%20cloud-blue)
 
-A high-assurance, distributed sensor network spanning **embedded firmware to cloud-native AI agents**. This project demonstrates full-stack IoT engineering—from bare-metal async Rust on the RP2040, through LoRaWAN mesh networking, to intelligent data processing with PydanticAI agents—all optimized for memory safety, fault tolerance, and extreme power efficiency.
+A high-assurance, distributed sensor network spanning **embedded firmware to cloud-native AI agents**. This project demonstrates full-stack IoT engineering—from bare-metal async Rust on the RP2040, through LoRaWAN mesh networking, to intelligent data processing with PydanticAI agents—all optimised for memory safety, fault tolerance, and extreme power efficiency.
 
 **What makes this project unique:** It's not just another sensor network. It's a complete demonstration of modern systems thinking across the entire stack, from sub-milliamp power budgets to LLM-powered decision making.
 
@@ -13,7 +13,7 @@ A high-assurance, distributed sensor network spanning **embedded firmware to clo
 This is a **proof of concept** that showcases:
 - **Cross-domain integration:** Hardware, networking, backend, and AI in one coherent system
 - **Production-quality patterns:** Even in prototype form, we use the right tools (Embassy, postcard, PydanticAI)
-- **Iterative development:** MSV (Minimum Shippable Version) first, optimization later
+- **Iterative development:** MSV (Minimum Shippable Version) first, optimisation later
 - **Learning through building:** Documentation reflects the actual development journey
 
 **This is not over-engineered.** Each technology choice solves a specific constraint (power, bandwidth, type safety, etc.).
@@ -22,7 +22,7 @@ This is a **proof of concept** that showcases:
 
 ## 🏗️ System Architecture
 
-The system follows a **"Store and Forward"** topology optimized for intermittent connectivity, extreme low power, and intelligent processing.
+The system follows a **"Store and Forward"** topology optimised for intermittent connectivity, extreme low power, and intelligent processing.
 
 ```
 ┌─────────────────┐
@@ -72,7 +72,7 @@ The system follows a **"Store and Forward"** topology optimized for intermittent
 ┌─────────────────┐  ┌──────────────────┐
 │  InfluxDB       │  │  PydanticAI      │
 │  - Time-series  │  │  Agent           │
-│  - Historical   │  │  - Analyze data  │
+│  - Historical   │  │  - Analyse data  │
 │    data         │  │  - Detect        │
 │  - Grafana      │  │    anomalies     │
 │    dashboards   │  │  - Generate      │
@@ -90,7 +90,7 @@ The system follows a **"Store and Forward"** topology optimized for intermittent
 5. **Sleep:** Powers down all oscillators, enters Dormant mode
 6. **Gateway:** Receives packet, forwards to Network Server
 7. **Backend:** Deserializes postcard binary, writes to InfluxDB
-8. **AI Agent:** Queries recent data, analyzes trends, triggers alerts if needed
+8. **AI Agent:** Queries recent data, analyses trends, triggers alerts if needed
 
 **Key Insight:** By using `postcard` instead of JSON, we reduce Time-on-Air by ~80%, which translates to:
 - **5x longer battery life** (less TX time = less power)
@@ -254,7 +254,7 @@ struct Telemetry {
 ### LoRaWAN Configuration
 
 ```rust
-// Optimized for battery life
+// Optimised for battery life
 const LORAWAN_CONFIG: Config = Config {
     region: Region::EU868,          // or US915
     join_mode: JoinMode::OTAA,      // Secure activation
@@ -323,7 +323,7 @@ cargo run --release
 **Flashing happens automatically** via probe-rs. Logs will stream to your terminal:
 
 ```plaintext
-INFO  [main] System initialized
+INFO  [main] System initialised
 INFO  [main] LoRaWAN joining...
 INFO  [lorawan] Join Accept received
 INFO  [sensor] BME680: T=24.5°C H=45% P=1013hPa G=1250Ω
@@ -338,7 +338,7 @@ INFO  [power] Entering Dormant mode
 
 **Problem:** I2C not working
 - Check pull-up resistors (4.7kΩ on SDA/SCL)
-- Verify I2C address: `i2cdetect` on Linux, logic analyzer, or try both 0x76/0x77
+- Verify I2C address: `i2cdetect` on Linux, logic analyser, or try both 0x76/0x77
 - Slow down clock: `Config::default().frequency(100_000)` (100kHz)
 
 **Problem:** LoRa radio not transmitting
@@ -366,7 +366,7 @@ The backend is a lightweight Rust service that bridges LoRaWAN to time-series st
 ### Technology Stack
 
 - **Web Framework:** Axum (async, fast, type-safe)
-- **Database:** InfluxDB 2.x (optimized for time-series)
+- **Database:** InfluxDB 2.x (optimised for time-series)
 - **Deserialization:** `postcard` (matching embedded side)
 - **Monitoring:** Grafana (dashboards for sensor trends)
 
@@ -446,10 +446,10 @@ from datetime import datetime, timedelta
 agent = Agent(
     model="openai:gpt-4o",  # or anthropic:claude-sonnet-4
     system_prompt="""You are an environmental monitoring expert.
-    Analyze sensor data and provide actionable insights."""
+    Analyse sensor data and provide actionable insights."""
 )
 
-async def analyze_recent_data(device_id: str):
+async def analyse_recent_data(device_id: str):
     # Query last 24h from InfluxDB
     data = await query_influxdb(
         device=device_id,
@@ -457,7 +457,7 @@ async def analyze_recent_data(device_id: str):
     )
     
     result = await agent.run(
-        f"""Analyze this sensor data:
+        f"""Analyse this sensor data:
         
         Device: {device_id}
         Readings: {data}
@@ -644,7 +644,7 @@ metrics::histogram!("decode_duration_ms").record(duration.as_millis());
 metrics::gauge!("active_devices").set(count);
 ```
 
-Scrape with Prometheus, visualize in Grafana.
+Scrape with Prometheus, visualise in Grafana.
 
 ### Grafana Dashboard Queries
 
@@ -709,27 +709,27 @@ from(bucket: "sensors")
 
 ## 🎯 Development Roadmap
 
-### ✅ Phase 1: MSV (Minimum Shippable Version)
+### ✅ Phase 1: MSV (CURRENT)
 - [x] Blink LED (prove toolchain works)
-- [x] Read BME680 via I2C
-- [x] Send LoRa packet (basic mode)
-- [x] LoRaWAN OTAA join
-- [x] End-to-end data flow (sensor → cloud)
+- [ ] Read BME680 via I2C
+- [ ] Send LoRa packet (basic mode)
+- [ ] LoRaWAN OTAA join
+- [ ] End-to-end data flow (sensor → cloud)
 
-### ✅ Phase 2: Power Optimization
-- [x] Implement Dormant mode
-- [x] DS3231 RTC integration
-- [x] Battery life testing
-- [x] Duty cycle backoff
+### ✅ Phase 2: Power Optimisation
+- [ ] Implement Dormant mode
+- [ ] DS3231 RTC integration
+- [ ] Battery life testing
+- [ ] Duty cycle backoff
 
 ### ✅ Phase 3: Data Processing
-- [x] Postcard serialization
-- [x] Backend webhook receiver
-- [x] InfluxDB integration
-- [x] Grafana dashboards
+- [ ] Postcard serialization
+- [ ] Backend webhook receiver
+- [ ] InfluxDB integration
+- [ ] Grafana dashboards
 
-### 🚧 Phase 4: Intelligence (Current)
-- [x] PydanticAI agent framework
+### 🚧 Phase 4: Intelligence 
+- [ ] PydanticAI agent framework
 - [ ] Anomaly detection
 - [ ] Trend analysis
 - [ ] Alert system
