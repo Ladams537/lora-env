@@ -1,0 +1,30 @@
+# --- Rust ---
+# Ignore build artifacts (This is the big one that causes thousands of files)
+target/
+**/target/
+**/*.rs.bk
+
+# --- Python (Poetry & PydanticAI) ---
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+poetry.lock
+# (Note: Keep poetry.lock if you want to lock versions, ignore it if you want fresh installs. 
+#  Standard practice is to KEEP it, so remove the line above if you want to commit the lockfile.)
+
+# --- macOS System Files ---
+.DS_Store
+._*
+
+# --- IDEs ---
+.idea/
+
+# --- Private Keys ---
+# Ensure your config.rs or keys don't get committed!
+**/config.rs
+agent/config.yaml
+
+# Documentation
+docs/

@@ -1,0 +1,7 @@
+[workspace]
+members = [
+    "firmware",
+    "backend",
+    "shared",
+]
+resolver = "2"
